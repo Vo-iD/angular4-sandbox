@@ -27,6 +27,8 @@ import { AppState, InternalStateType } from './app.service';
 
 import { SharedModule } from './shared/shared.module';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { CoursesListComponent } from 'app/courses-list/courses-list.component';
 
 import '../styles/styles.scss';
@@ -46,16 +48,17 @@ type StoreType = {
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [
-    AppComponent,
-    CoursesListComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    AppRoutingModule,
     SharedModule
+  ],
+  declarations: [
+    AppComponent,
+    CoursesListComponent
   ],
   providers: [
     ENV_PROVIDERS,
