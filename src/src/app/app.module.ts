@@ -29,7 +29,7 @@ import { LayoutModule } from './layout/layout.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { CoursesListComponent } from 'app/courses-list/courses-list.component';
+import { CourseModule } from './course/course.module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -54,11 +54,11 @@ type StoreType = {
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    CourseModule
   ],
   declarations: [
-    AppComponent,
-    CoursesListComponent
+    AppComponent
   ],
   providers: [
     ENV_PROVIDERS,
