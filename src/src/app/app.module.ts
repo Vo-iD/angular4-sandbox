@@ -24,10 +24,10 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
+
+import { SharedModule } from './shared/shared.module';
+
+import { CoursesListComponent } from 'app/courses-list/courses-list.component';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -44,54 +44,36 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    AboutComponent,
-    HomeComponent,
-    NoContentComponent,
-    XLargeDirective
+    CoursesListComponent
   ],
-  /**
-   * Import Angular's modules.
-   */
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    SharedModule
   ],
-  /**
-   * Expose our Services and Providers into Angular's dependency injection.
-   */
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS
   ]
 })
 export class AppModule {
-
   constructor(
     public appRef: ApplicationRef,
     public appState: AppState
-  ) {}
+  ) { }
 
   public hmrOnInit(store: StoreType) {
     if (!store || !store.state) {
       return;
     }
     console.log('HMR store', JSON.stringify(store, null, 2));
-    /**
-     * Set state
-     */
     this.appState._state = store.state;
-    /**
-     * Set input values
-     */
     if ('restoreInputValues' in store) {
       let restoreInputValues = store.restoreInputValues;
       setTimeout(restoreInputValues);
@@ -104,29 +86,14 @@ export class AppModule {
 
   public hmrOnDestroy(store: StoreType) {
     const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
-    /**
-     * Save state
-     */
     const state = this.appState._state;
     store.state = state;
-    /**
-     * Recreate root elements
-     */
     store.disposeOldHosts = createNewHosts(cmpLocation);
-    /**
-     * Save input values
-     */
-    store.restoreInputValues  = createInputTransfer();
-    /**
-     * Remove styles
-     */
+    store.restoreInputValues = createInputTransfer();
     removeNgStyles();
   }
 
   public hmrAfterDestroy(store: StoreType) {
-    /**
-     * Display new elements
-     */
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
