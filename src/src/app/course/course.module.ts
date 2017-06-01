@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CourseDetailsComponent } from './details/course-details.component';
-import { CoursesListComponent } from './courses-list/courses-list.component';
+import { CoursesListComponent, CourseDetailsComponent } from './courses';
 
 @NgModule({
   exports: [
@@ -13,8 +12,3 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
   ]
 })
 export class CourseModule { }
-
-export {
-  CourseDetailsComponent,
-  CoursesListComponent
-}

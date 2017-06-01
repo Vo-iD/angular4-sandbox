@@ -19,7 +19,6 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
@@ -27,7 +26,7 @@ import { AppState, InternalStateType } from './app.service';
 
 import { LayoutModule } from './layout/layout.module';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouting } from './app-routing';
 
 import { CourseModule } from './course/course.module';
 
@@ -52,8 +51,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    AppRoutingModule,
+    AppRouting,
     LayoutModule,
     CourseModule
   ],

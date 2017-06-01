@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CoursesListComponent, CourseDetailsComponent } from './course/courses';
 
-import { CoursesListComponent, CourseDetailsComponent } from './course/course.module';
-
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     redirectTo: '/courses',
@@ -19,10 +18,4 @@ const appRoutes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const AppRouting = RouterModule.forRoot(appRoutes);
