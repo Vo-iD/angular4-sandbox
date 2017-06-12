@@ -1,6 +1,6 @@
-<div>
+<div class="container">
   <course-controls></course-controls>
   <div *ngFor="let course of courses">
-    <course-preview [course]="course"></course-preview>
+    <course-preview class="row" [course]="course"></course-preview>
   </div>
 </div>
