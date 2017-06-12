@@ -1,0 +1,15 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+
+.profile {
+  margin: 15px 0 15px 0;
+  display: block;
+
+  .name {
+    cursor: default;
+  }
+
+  .actionIcon {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+}
