@@ -1,6 +1,6 @@
 <div>
   <course-controls></course-controls>
   <div *ngFor="let course of courses">
-    {{course.description}}
+    <course-preview [course]="course"></course-preview>
   </div>
 </div>

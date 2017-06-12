@@ -3,6 +3,7 @@ import { CoursesListComponent, CourseDetailsComponent } from './courses';
 import { CourseService } from './course.service';
 import { CommonModule } from '@angular/common';
 import { CourseControlsModule } from './list/controls/course-controls.module';
+import { CoursePreviewComponent } from './list/preview/course-preview.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CourseControlsModule } from './list/controls/course-controls.module';
   ],
   declarations: [
     CourseDetailsComponent,
-    CoursesListComponent
+    CoursesListComponent,
+    CoursePreviewComponent
   ],
   providers: [CourseService]
 })
