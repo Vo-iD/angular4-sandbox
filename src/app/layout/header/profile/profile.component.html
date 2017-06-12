@@ -1,5 +1,5 @@
 <ul class="profile nav navbar-nav navbar-right">
-  <li *ngIf="userInfo">
+  <li *ngIf="authenticated">
     <a class="name">
       <span>Hello {{userInfo.firstName}} {{userInfo.lastName}}</span>
     </a>

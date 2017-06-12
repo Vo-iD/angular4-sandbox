@@ -12,15 +12,18 @@ export class ProfileComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.updateUserInfo();
+    this._updateUserInfo();
+  }
+
+  public get authenticated(): boolean {
+    return this._authService.isAuthenticated();
   }
 
   public logOut(): void {
     this._authService.logOut();
-    this.updateUserInfo();
   }
 
-  private updateUserInfo() {
+  private _updateUserInfo(): void {
     this.userInfo = this._authService.getUserInfo();
   }
 }
