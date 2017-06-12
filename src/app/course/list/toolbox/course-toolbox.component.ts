@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './course-toolbox.component.html'
 })
 export class CourseToolboxComponent {
+
+  public addCourse() {
+    console.log('Add course clicked');
+  }
 }

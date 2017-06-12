@@ -17,4 +17,8 @@ export class CoursesListComponent implements OnInit {
   public ngOnInit(): void {
     this.courses = this._courseService.getList();
   }
+
+  public deleteCourse($event) {
+    console.log(`Delete course with id ${$event} requested`);
+  }
 }
