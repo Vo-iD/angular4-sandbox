@@ -1,14 +1,17 @@
 {
-  "name": "agnular2-cdp",
-  "description": "Angular 2 CDP",
+  "name": "angular-starter",
+  "version": "6.0.0",
+  "description": "An Angular Webpack Starter kit featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
   "keywords": [
     "angular",
     "angular2",
+    "angular4",
     "webpack",
     "typescript"
   ],
-  "author": "Bohdan Simianyk <Bohdan_Simianyk@epam.com>",
-  "homepage": "https://gitpct.epam.com/bohdan_simianyk/angular2_training.git",
+  "author": "Patrick Stapleton <patrick@angularclass.com>",
+  "homepage": "https://github.com/AngularClass/angular-starter",
+  "license": "MIT",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
     "build:aot": "npm run build:aot:prod",
@@ -48,7 +51,7 @@
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
-    "server:prod:ci": "http-server dist -p 9333 -c-1 --cors",
+    "server:prod:ci": "http-server dist -p 3000 -c-1 --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:dev",
@@ -84,8 +87,8 @@
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "reflect-metadata": "^0.1.10",
-    "rxjs": "5.0.2",
-    "zone.js": "~0.8.5"
+    "rxjs": "~5.0.2",
+    "zone.js": "0.8.5"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~4.0.3",
@@ -101,8 +104,8 @@
     "awesome-typescript-loader": "~3.1.2",
     "codelyzer": "~2.1.1",
     "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
+    "cross-env": "^5.0.0",
     "exports-loader": "^0.6.4",
     "expose-loader": "^0.7.3",
     "extract-text-webpack-plugin": "~2.1.0",
@@ -129,6 +132,7 @@
     "npm-run-all": "^4.0.2",
     "optimize-js-plugin": "0.0.4",
     "parse5": "^3.0.2",
+    "preload-webpack-plugin": "^1.2.2",
     "protractor": "^5.1.1",
     "raw-loader": "0.5.1",
     "rimraf": "~2.6.1",
@@ -136,7 +140,7 @@
     "script-ext-html-webpack-plugin": "^1.7.1",
     "source-map-loader": "^0.2.1",
     "string-replace-loader": "~1.2.0",
-    "style-loader": "^0.16.1",
+    "style-loader": "^0.18.1",
     "to-string-loader": "^1.1.5",
     "ts-node": "^3.0.2",
     "tslib": "^1.6.1",
@@ -145,7 +149,7 @@
     "typedoc": "^0.5.10",
     "typescript": "~2.2.2",
     "url-loader": "^0.5.8",
-    "webpack": "^2.4.1",
+    "webpack": "~2.6.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "~2.4.2",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
@@ -153,7 +157,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitpct.epam.com/bohdan_simianyk/angular2_training.git"
+    "url": "https://github.com/AngularClass/angular-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AngularClass/angular-starter/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
