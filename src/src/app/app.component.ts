@@ -25,7 +25,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     public appState: AppState
-  ) { }
+  ) {
+    console.log('App started...');
+  }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);

@@ -1,16 +1,14 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "6.0.0",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "name": "agnular2-cdp",
+  "description": "Angular 2 CDP",
   "keywords": [
     "angular",
     "angular2",
     "webpack",
     "typescript"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
-  "license": "MIT",
+  "author": "Bohdan Simianyk <Bohdan_Simianyk@epam.com>",
+  "homepage": "https://gitpct.epam.com/bohdan_simianyk/angular2_training.git",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
     "build:aot": "npm run build:aot:prod",
@@ -50,7 +48,7 @@
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
-    "server:prod:ci": "http-server dist -p 3000 -c-1 --cors",
+    "server:prod:ci": "http-server dist -p 9333 -c-1 --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:dev",
@@ -103,8 +101,8 @@
     "awesome-typescript-loader": "~3.1.2",
     "codelyzer": "~2.1.1",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
     "cross-env": "^5.0.0",
+    "css-loader": "^0.28.0",
     "exports-loader": "^0.6.4",
     "expose-loader": "^0.7.3",
     "extract-text-webpack-plugin": "~2.1.0",
@@ -147,7 +145,7 @@
     "typedoc": "^0.5.10",
     "typescript": "~2.2.2",
     "url-loader": "^0.5.8",
-    "webpack": "~2.4.1",
+    "webpack": "^2.4.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "~2.4.2",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
@@ -155,10 +153,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
+    "url": "https://gitpct.epam.com/bohdan_simianyk/angular2_training.git"
   },
   "engines": {
     "node": ">= 4.2.1",
