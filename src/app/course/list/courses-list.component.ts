@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ModalWindowService } from '../../shared/shared';
+
 import { CourseService } from '../course.service';
 import { Course } from '../models/course';
 
@@ -10,7 +13,9 @@ import { Course } from '../models/course';
 export class CoursesListComponent implements OnInit {
   public courses: Course[];
 
-  constructor(private _courseService: CourseService) {
+  constructor(
+    private _courseService: CourseService,
+    private _modalWindowService: ModalWindowService) {
 
   }
 
@@ -19,6 +24,11 @@ export class CoursesListComponent implements OnInit {
   }
 
   public deleteCourse($event) {
-    console.log(`Delete course with id ${$event} requested`);
+    this._modalWindowService.openConfirmation('Do you really want to delete this course?')
+      .then((result) => {
+        if (result) {
+          this._courseService.remove($event);
+        }
+      });
   }
 }
