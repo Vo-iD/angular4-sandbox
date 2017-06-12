@@ -55,7 +55,23 @@ export class CourseService {
     return this._courses;
   }
 
-  public getCourse(id: string): Course {
+  public get(id: string): Course {
     return this._courses.find((c) => c.id === id);
+  }
+
+  public create(course: Course): void {
+    this._courses.push(course);
+  }
+
+  public update(id: string, course: Course): void {
+    course.id = id;
+    this.remove(id);
+    this.create(course);
+    this._courses = this._courses.sort((first, second) => first.id > second.id ? 1 : -1);
+  }
+
+  public remove(id: string): void {
+    const index = this._courses.findIndex((c) => c.id === id);
+    this._courses.splice(index, 1);
   }
 }
