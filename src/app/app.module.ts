@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
+import { AuthModule } from './auth/auth';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 
@@ -54,6 +55,7 @@ type StoreType = {
     HttpModule,
     AppRouting,
     SharedModule,
+    AuthModule,
     LayoutModule,
     CourseModule
   ],

@@ -1,10 +1,10 @@
 <ul class="profile nav navbar-nav navbar-right">
-  <li>
+  <li *ngIf="userInfo">
     <a class="name">
-      <span>User Login</span>
+      <span>Hello {{userInfo.firstName}} {{userInfo.lastName}}</span>
     </a>
   </li>
   <li>
-    <a class="actionIcon">Log off</a>
+    <a class="actionIcon" (click)="logOut()">Log off</a>
   </li>
 </ul>
