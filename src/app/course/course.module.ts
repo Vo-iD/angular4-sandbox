@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CoursesListComponent, CourseDetailsComponent } from './courses';
 import { CourseService } from './course.service';
 import { CommonModule } from '@angular/common';
-import { CourseControlsModule } from './list/controls/course-controls.module';
+import { CourseToolboxModule } from './list/toolbox/course-toolbox.module';
 import { CoursePreviewComponent } from './list/preview/course-preview.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    CourseControlsModule
+    CourseToolboxModule
   ],
   exports: [
     CourseDetailsComponent,
