@@ -1,6 +1,6 @@
 <div class="container">
   <course-toolbox></course-toolbox>
-  <div *ngFor="let course of courses">
+  <div *ngFor="let course of courses | orderBy: 'creatingDate'">
     <course-preview class="row" [course]="course" (deleteCourse)="deleteCourse($event)"></course-preview>
   </div>
 </div>

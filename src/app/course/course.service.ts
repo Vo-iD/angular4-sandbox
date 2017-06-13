@@ -13,6 +13,14 @@ export class CourseService {
 
   constructor() {
     this._courses = this._courses = [{
+        id: '5',
+        type: 'Webinar',
+        duration: 135,
+        creatingDate: new Date(2017, 5, 16, 12),
+        title: 'Angular 2 vs ReactJS vs Vue.js',
+        description: this._description
+      },
+      {
         id: '1',
         type: 'Video',
         duration: 55,
@@ -39,13 +47,6 @@ export class CourseService {
         duration: 115,
         creatingDate: new Date(2017, 5, 15, 12),
         title: 'Vue.js: Intro',
-        description: this._description
-      }, {
-        id: '5',
-        type: 'Webinar',
-        duration: 135,
-        creatingDate: new Date(2017, 5, 16, 12),
-        title: 'Angular 2 vs ReactJS vs Vue.js',
         description: this._description
       }
     ];

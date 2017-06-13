@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { ModalWindowService } from './modal/modal-window.service';
 import { MinutesToTimePipe } from './pipes/minutes-to-time.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   imports: [
   ],
   exports: [
-    MinutesToTimePipe
+    MinutesToTimePipe,
+    OrderByPipe
   ],
   declarations: [
-    MinutesToTimePipe
+    MinutesToTimePipe,
+    OrderByPipe
   ],
   providers: [
     ModalWindowService
