@@ -6,7 +6,7 @@ import { Course } from '../../models/course';
   templateUrl: './course-toolbox.component.html'
 })
 export class CourseToolboxComponent {
-  @Output() public coursesChange: EventEmitter<Course[]> = new EventEmitter(); // todo remove?
+  @Output() public coursesChange: EventEmitter<Course[]> = new EventEmitter();
 
   private _courses: Course[];
 

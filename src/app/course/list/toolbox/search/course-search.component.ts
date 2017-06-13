@@ -11,7 +11,7 @@ import { Course } from '../../../models/course';
 })
 export class CourseSearchComponent {
   public searchTerm: string;
-  @Output() public coursesChange: EventEmitter<Course[]> = new EventEmitter(); // todo remove?
+  @Output() public coursesChange: EventEmitter<Course[]> = new EventEmitter();
 
   private _allCourses: Course[];
   private _courses: Course[];
