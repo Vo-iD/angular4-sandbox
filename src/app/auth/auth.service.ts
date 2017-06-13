@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { UserInfo } from './auth.models';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  private _userInfo: UserInfo;
+  public userInfo: UserInfo;
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _appRef: ApplicationRef) {
     this.initStubUserInfo();
   }
 
@@ -16,30 +16,30 @@ export class AuthService {
     this.initStubUserInfo();
 
     this._router.navigate(['courses']);
+    this._appRef.tick();
   }
 
   public logOut(): void {
     console.log('Logging out...');
-    this._userInfo = null;
+    this.userInfo = null;
     console.log('Redirecting to login page');
 
     this._router.navigate(['login']);
+    this._appRef.tick(); // todo remove??
   }
 
   public isAuthenticated(): boolean {
-    return !!this._userInfo;
+    const result = !!this.userInfo;
+    console.log('isAuthenticated: ' + result);
+    return result;
   }
 
-  public getUserInfo(): UserInfo {
-    return this._userInfo;
-  }
+  private initStubUserInfo(): void {
+    this.userInfo = new UserInfo();
 
-  private initStubUserInfo(): void{
-    this._userInfo = new UserInfo();
-
-    this._userInfo.login = 'Captain Jack Sparrow';
-    this._userInfo.firstName = 'Jack';
-    this._userInfo.lastName = 'Sparrow';
-    this._userInfo.role = 'Captain';
+    this.userInfo.login = 'Captain Jack Sparrow';
+    this.userInfo.firstName = 'Jack';
+    this.userInfo.lastName = 'Sparrow';
+    this.userInfo.role = 'Captain';
   }
 }

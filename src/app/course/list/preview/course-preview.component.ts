@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../models/course';
 
 @Component({
   selector: 'course-preview',
   templateUrl: './course-preview.component.html',
-  styleUrls: ['./course-preview.component.scss']
+  styleUrls: ['./course-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursePreviewComponent {
   @Input() public course: Course;

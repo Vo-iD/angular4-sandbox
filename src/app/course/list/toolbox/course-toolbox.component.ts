@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'course-toolbox',
-  templateUrl: './course-toolbox.component.html'
+  templateUrl: './course-toolbox.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseToolboxComponent {
 
