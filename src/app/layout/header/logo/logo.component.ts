@@ -1,11 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/auth';
 
 @Component({
   selector: 'logo',
   templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
     constructor(private _authService: AuthService) {
