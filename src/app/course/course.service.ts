@@ -12,13 +12,14 @@ export class CourseService {
   private _courses: Course[];
 
   constructor() {
-    this._courses = this._courses = [{
+    this._courses = [{
         id: '5',
         type: 'Webinar',
         duration: 135,
         creatingDate: new Date(2017, 5, 16, 12),
         title: 'Angular 2 vs ReactJS vs Vue.js',
-        description: this._description
+        description: this._description,
+        topRated: true
       },
       {
         id: '1',
@@ -26,28 +27,32 @@ export class CourseService {
         duration: 55,
         creatingDate: new Date(2017, 5, 1, 13, 30),
         title: 'Angular 2: Basics',
-        description: this._description
+        description: this._description,
+        topRated: false
       }, {
         id: '2',
         type: 'Video',
         duration: 235,
         creatingDate: new Date(2017, 5, 7, 13, 30),
         title: 'Angular 2: Advanced',
-        description: this._description
+        description: this._description,
+        topRated: true
       }, {
         id: '3',
         type: 'Webinar',
         duration: 90,
         creatingDate: new Date(2017, 5, 13, 13, 30),
         title: 'ReactJS: Intro',
-        description: this._description
+        description: this._description,
+        topRated: false
       }, {
         id: '4',
         type: 'Webinar',
         duration: 115,
         creatingDate: new Date(2017, 5, 15, 12),
         title: 'Vue.js: Intro',
-        description: this._description
+        description: this._description,
+        topRated: false
       }
     ];
   }

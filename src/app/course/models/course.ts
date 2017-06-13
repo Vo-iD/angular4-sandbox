@@ -5,4 +5,5 @@ export class Course {
   public creatingDate: Date;
   public title: string;
   public description: string;
+  public topRated: boolean;
 }
