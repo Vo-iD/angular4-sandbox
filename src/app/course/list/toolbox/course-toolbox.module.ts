@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CourseService } from '../../course.service';
 import { CourseToolboxComponent } from './course-toolbox.component';
 import { CourseSearchComponent } from './search/course-search.component';
+import { SearchCoursePipe } from './search/search.pipe';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { CourseSearchComponent } from './search/course-search.component';
     CourseToolboxComponent,
     CourseSearchComponent
   ],
-  providers: [CourseService]
+  providers: [CourseService, SearchCoursePipe]
 })
 export class CourseToolboxModule { }
