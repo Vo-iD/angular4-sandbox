@@ -7,6 +7,7 @@ import { CoursesListComponent, CourseDetailsComponent } from './courses';
 import { CourseService } from './course.service';
 import { CourseToolboxModule } from './list/toolbox/course-toolbox.module';
 import { CoursePreviewComponent } from './list/preview/course-preview.component';
+import { CourseBorderDirective } from './directives/course-border.directive';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { CoursePreviewComponent } from './list/preview/course-preview.component'
     CoursesListComponent
   ],
   declarations: [
+    CourseBorderDirective,
     CourseDetailsComponent,
     CoursesListComponent,
     CoursePreviewComponent
