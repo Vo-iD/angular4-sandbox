@@ -14,7 +14,6 @@ export class CourseBorderDirective implements OnInit {
     let freshDate = new Date();
     freshDate.setDate(currentDate.getDate() - 14);
     if (this.creatingDate < currentDate && this.creatingDate > freshDate) {
-      debugger;
       this._element.nativeElement.className += ' fresh-course';
     }
 

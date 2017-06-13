@@ -12,7 +12,7 @@ import { CourseBorderDirective } from './directives/course-border.directive';
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
+    SharedModule.forRoot(),
     CourseToolboxModule
   ],
   exports: [
