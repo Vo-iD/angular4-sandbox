@@ -30,7 +30,6 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const result = !!this.userInfo;
-    console.log('isAuthenticated: ' + result);
     return result;
   }
 
