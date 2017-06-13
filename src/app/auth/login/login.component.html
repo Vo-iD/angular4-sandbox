@@ -1,1 +1,13 @@
-login
+<form id="signin" class="center-block login-form">
+  <div class="input-group login-input">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input required [(ngModel)]="userLogin" id="login" type="text" class="form-control required" name="login" value="" placeholder="Login">
+  </div>
+
+  <div class="input-group login-input">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input required [(ngModel)]="userPass" id="password" type="password" class="form-control required" name="password" value="" placeholder="Password">
+  </div>
+
+  <button type="submit" class="btn btn-primary center-block" (click)="login()">Login</button>
+</form>
