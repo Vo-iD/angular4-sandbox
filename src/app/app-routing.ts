@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoursesListComponent, CourseDetailsComponent } from './course/courses';
-import { LoginComponent } from './auth/auth';
+import { LoginPageComponent } from './auth/auth';
 
 export const appRoutes: Routes = [
   {
@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginPageComponent
   }
 ];
 

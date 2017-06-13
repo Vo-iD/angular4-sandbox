@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent {
+export class LoginPageComponent {
   public userLogin: string;
   public userPass: string;
 
