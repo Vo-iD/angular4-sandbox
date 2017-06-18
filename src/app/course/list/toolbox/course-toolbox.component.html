@@ -3,7 +3,7 @@
    <course-search [(courses)]="courses"></course-search>
   </div>
   <div class="col-md-2 col-md-offset-6">
-    <button type="button" class="btn btn-default pull-right" aria-label="Left Align" (click)="addCourse()">
+    <button type="button" class="btn btn-default pull-right" aria-label="Left Align" [routerLink]="['/newCourse']">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       Add course
     </button>

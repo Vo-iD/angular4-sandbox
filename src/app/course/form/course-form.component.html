@@ -1,3 +1,44 @@
-<div>
-  Edit course {{courseId}}
+<div class="container course-form">
+  <form class="col-md-8 col-md-offset-2">
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" name="title" class="form-control" id="title" [(ngModel)]="course.title" placeholder="Course title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="description" rows="7" id="description" [(ngModel)]="course.description" placeholder="Course description"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Date</label>
+      <div class="col-sm-10">
+        <date-input [date]="course.date" (dateChanged)="updateDate($event)"></date-input>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Duration</label>
+      <div class="col-sm-10">
+        <duration [duration]="course.duration" (durationChanged)="updateDuration($event)"></duration>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Authors</label>
+      <div class="col-sm-10">
+        <authors></authors>
+      </div>
+    </div>
+
+    <div class="row col-sm-offset-4">
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary" (click)="save()">{{submitButtonTitle}}</button>
+      </div>
+
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -17,8 +17,4 @@ export class CourseToolboxComponent {
     this._courses = val;
     this.coursesChange.emit(this._courses);
   }
-
-  public addCourse() {
-    console.log('Add course clicked');
-  }
 }

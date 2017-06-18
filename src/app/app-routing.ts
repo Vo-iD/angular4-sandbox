@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   CoursesListComponent,
   CourseDetailsComponent,
-  EditCourseComponent
+  EditCourseComponent,
+  AddCourseComponent
 } from './course/courses';
 import { LoginPageComponent } from './auth/auth';
 
@@ -20,6 +21,10 @@ export const appRoutes: Routes = [
   {
     path: 'courses/:id',
     component: CourseDetailsComponent
+  },
+  {
+    path: 'newCourse',
+    component: AddCourseComponent
   },
   {
     path: 'courses/:id/edit',
