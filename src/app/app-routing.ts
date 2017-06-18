@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoursesListComponent, CourseDetailsComponent } from './course/courses';
+import {
+  CoursesListComponent,
+  CourseDetailsComponent,
+  EditCourseComponent
+} from './course/courses';
 import { LoginPageComponent } from './auth/auth';
 
 export const appRoutes: Routes = [
@@ -16,6 +20,10 @@ export const appRoutes: Routes = [
   {
     path: 'courses/:id',
     component: CourseDetailsComponent
+  },
+  {
+    path: 'courses/:id/edit',
+    component: EditCourseComponent
   },
   {
     path: 'login',
