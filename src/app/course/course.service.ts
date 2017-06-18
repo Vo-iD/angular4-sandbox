@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from './models/course';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CourseService {
@@ -57,12 +58,12 @@ export class CourseService {
     ];
   }
 
-  public getList(): Course[] {
-    return this._courses;
+  public getList(): Observable<Course[]> {
+    return Observable.of(this._courses);
   }
 
-  public get(id: string): Course {
-    return this._courses.find((c) => c.id === id);
+  public get(id: string): Observable<Course> {
+    return Observable.of(this._courses.find((c) => c.id === id));
   }
 
   public create(course: Course): void {

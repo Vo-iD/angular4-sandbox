@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import 'rxjs/add/operator/takeUntil';
 
-import { ModalWindowService } from '../../shared/shared';
+import { ModalWindowService, SafeObservableWrapper } from '../../shared/shared';
 
 import { CourseService } from '../course.service';
 import { Course } from '../models/course';
@@ -10,17 +11,20 @@ import { Course } from '../models/course';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent extends SafeObservableWrapper implements OnInit {
   public courses: Course[];
 
   constructor(
     private _courseService: CourseService,
     private _modalWindowService: ModalWindowService) {
-
+    super();
   }
 
   public ngOnInit(): void {
-    this.courses = this._courseService.getList();
+    const subscription = this._courseService
+      .getList()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((courses) => this.courses = courses);
   }
 
   public deleteCourse($event) {
