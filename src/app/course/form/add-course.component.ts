@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { Course } from '../models/course';
 import { CourseService } from '../course.service';
 import { CourseBaseForm } from './course-base-form';

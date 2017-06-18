@@ -21,7 +21,6 @@ export class CoursesListComponent extends SafeObservableWrapper implements OnIni
   }
 
   public ngOnInit(): void {
-    debugger;
     const subscription = this._courseService
       .getList()
       .takeUntil(this.ngUnsubscribe)

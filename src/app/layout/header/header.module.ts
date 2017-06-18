@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LogoComponent } from './logo/logo.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { HeaderComponent } from './header.component';
   declarations: [
     LogoComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    BreadcrumbsComponent
   ]
 })
 export class HeaderModule { }

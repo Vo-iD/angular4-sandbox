@@ -16,23 +16,38 @@ export const appRoutes: Routes = [
   },
   {
     path: 'courses',
-    component: CoursesListComponent
+    component: CoursesListComponent,
+    data: {
+      breadcrumb: 'Courses'
+    }
   },
   {
     path: 'courses/:id',
-    component: CourseDetailsComponent
+    component: CourseDetailsComponent,
+    data: {
+      breadcrumb: 'Course Details'
+    }
   },
   {
     path: 'newCourse',
-    component: AddCourseComponent
+    component: AddCourseComponent,
+    data: {
+      breadcrumb: 'New Course'
+    }
   },
   {
     path: 'courses/:id/edit',
-    component: EditCourseComponent
+    component: EditCourseComponent,
+    data: {
+      breadcrumb: 'Edit Course'
+    }
   },
   {
     path: 'login',
-    component: LoginPageComponent
+    component: LoginPageComponent,
+    data: {
+      breadcrumb: 'Login'
+    }
   }
 ];
 
