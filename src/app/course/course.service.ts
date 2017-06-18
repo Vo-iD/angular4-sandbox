@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Course } from './models/course';
 import { Observable } from 'rxjs/Observable';
+
+import { Course } from './models/course';
+import { ServerCourse } from './models/server-course';
 
 @Injectable()
 export class CourseService {
@@ -10,75 +12,137 @@ export class CourseService {
     ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
     sunt in culpa qui officia deserunt mollit anim id est laborum.`;
-  private _courses: Course[];
+  private _fakeResponseFromTheServer: ServerCourse[];
 
   constructor() {
-    this._courses = [{
-        id: '5',
-        type: 'Webinar',
-        duration: 135,
-        creatingDate: new Date(2017, 5, 16, 12),
-        title: 'Angular 2 vs ReactJS vs Vue.js',
-        description: this._description,
-        topRated: true
-      },
-      {
-        id: '1',
-        type: 'Video',
-        duration: 55,
-        creatingDate: new Date(2017, 5, 1, 13, 30),
-        title: 'Angular 2: Basics',
-        description: this._description,
-        topRated: false
-      }, {
-        id: '2',
-        type: 'Video',
-        duration: 235,
-        creatingDate: new Date(2017, 5, 7, 13, 30),
-        title: 'Angular 2: Advanced',
-        description: this._description,
-        topRated: true
-      }, {
-        id: '3',
-        type: 'Webinar',
-        duration: 90,
-        creatingDate: new Date(2017, 5, 13, 13, 30),
-        title: 'ReactJS: Intro',
-        description: this._description,
-        topRated: false
-      }, {
-        id: '4',
-        type: 'Webinar',
-        duration: 115,
-        creatingDate: new Date(2017, 5, 15, 12),
-        title: 'Vue.js: Intro',
-        description: this._description,
-        topRated: false
-      }
-    ];
+    this._initData();
   }
 
   public getList(): Observable<Course[]> {
-    return Observable.of(this._courses);
+    const currentDate = new Date();
+    let freshDate = new Date();
+    freshDate.setDate(currentDate.getDate() - 14);
+
+    const courses = this._fakeResponseFromTheServer
+      .filter((course) => course.courseCreatingDate >= freshDate)
+      .map((courseSource) => this._mapServerCourse(courseSource));
+
+    return Observable.of(courses);
   }
 
   public get(id: string): Observable<Course> {
-    return Observable.of(this._courses.find((c) => c.id === id));
+    const source = this._fakeResponseFromTheServer.find((c) => c.courseId === id);
+    const course = this._mapServerCourse(source);
+
+    return Observable.of(course);
   }
 
   public create(course: Course): void {
-    this._courses.push(course);
+    const serverCourse = this._mapClientCourse(course);
+
+    this._fakeResponseFromTheServer.push(serverCourse);
   }
 
   public update(id: string, course: Course): void {
     course.id = id;
     this.remove(id);
     this.create(course);
-    this._courses = this._courses.sort((first, second) => first.id > second.id ? 1 : -1);
+    this._fakeResponseFromTheServer = this._fakeResponseFromTheServer
+      .sort((first, second) => first.courseId > second.courseId ? 1 : -1);
   }
 
   public remove(id: string): void {
-    const index = this._courses.findIndex((c) => c.id === id);
-    this._courses.splice(index, 1);
+    const index = this._fakeResponseFromTheServer.findIndex((c) => c.courseId === id);
+    this._fakeResponseFromTheServer.splice(index, 1);
+  }
+
+  private _mapServerCourse(source: ServerCourse): Course {
+    const course = {
+      id: source.courseId,
+      type: source.courseType,
+      duration: source.courseDuration,
+      date: source.courseCreatingDate,
+      title: source.courseTitle,
+      description: source.courseDescription,
+      topRated: source.courseIsTopRated
+    } as Course;
+
+    return course;
+  }
+
+  private _mapClientCourse(source: Course): ServerCourse {
+    const course = {
+      courseId: source.id,
+      courseType: source.type,
+      courseDuration: source.duration,
+      courseCreatingDate: source.date,
+      courseTitle: source.title,
+      courseDescription: source.description,
+      courseIsTopRated: source.topRated
+    } as ServerCourse;
+
+    return course;
+  }
+
+  private _initData() {
+        this._fakeResponseFromTheServer = [{
+        courseId: '5',
+        courseType: 'Webinar',
+        courseDuration: 135,
+        courseCreatingDate: new Date(2017, 5, 16, 12),
+        courseTitle: 'Angular 2 vs ReactJS vs Vue.js',
+        courseDescription: this._description,
+        courseIsTopRated: true
+      },
+      { // outdated
+        courseId: '1',
+        courseType: 'Video',
+        courseDuration: 55,
+        courseCreatingDate: new Date(2017, 5, 1, 13, 30),
+        courseTitle: 'Angular 2: Basics',
+        courseDescription: this._description,
+        courseIsTopRated: false
+      }, {
+        courseId: '2',
+        courseType: 'Video',
+        courseDuration: 235,
+        courseCreatingDate: new Date(2017, 5, 7, 13, 30),
+        courseTitle: 'Angular 2: Advanced',
+        courseDescription: this._description,
+        courseIsTopRated: true
+      }, {
+        courseId: '3',
+        courseType: 'Webinar',
+        courseDuration: 90,
+        courseCreatingDate: new Date(2017, 5, 13, 13, 30),
+        courseTitle: 'ReactJS: Intro',
+        courseDescription: this._description,
+        courseIsTopRated: false
+      }, {
+        courseId: '4',
+        courseType: 'Webinar',
+        courseDuration: 115,
+        courseCreatingDate: new Date(2017, 5, 15, 12),
+        courseTitle: 'Vue.js: Intro',
+        courseDescription: this._description,
+        courseIsTopRated: false
+      }, {
+        courseId: '6',
+        courseType: 'Webinar',
+        courseDuration: 115,
+        courseCreatingDate: new Date(2017, 6, 15, 12),
+        courseTitle: 'Ember.js: Intro',
+        courseDescription: this._description,
+        courseIsTopRated: false
+      }, {
+        courseId: '7',
+        courseType: 'Webinar',
+        courseDuration: 145,
+        courseCreatingDate: new Date(2017, 6, 17, 12),
+        courseTitle: 'Ember.js: Why is it better than React',
+        courseDescription: this._description,
+        courseIsTopRated: true
+      }
+    ];
   }
 }

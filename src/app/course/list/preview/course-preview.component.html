@@ -1,10 +1,10 @@
-<div class="preview-container" [course-border]="course.creatingDate" [ngClass]="{'top-rated': course.topRated}">
+<div class="preview-container" [course-border]="course.date" [ngClass]="{'top-rated': course.topRated}">
   <div class="col-md-10">
     <div class="preview">
       <h4 class="preview-heading">
         <b>{{course.title | uppercase}}</b> | Type: {{course.type}} | {{course.duration | minutesToTime}}
         <span *ngIf="course.topRated" class="glyphicon glyphicon-star"></span>
-        <span class="pull-right">{{course.creatingDate | date: 'short'}}</span>
+        <span class="pull-right">{{course.date | date: 'short'}}</span>
       </h4>
       <div class="preview-body">
         {{course.description}}
