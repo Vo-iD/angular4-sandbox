@@ -15,6 +15,8 @@ import {
   PreloadAllModules
 } from '@angular/router';
 
+import { BlockUIModule } from 'ng-block-ui';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -54,6 +56,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     AppRouting,
+    BlockUIModule,
     SharedModule,
     AuthModule,
     LayoutModule,

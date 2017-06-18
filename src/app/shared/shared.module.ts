@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ModalWindowService } from './modal/modal-window.service';
+import { ModalWindowService, SpinnerService } from './shared';
 import { MinutesToTimePipe } from './pipes/minutes-to-time.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 
@@ -15,7 +15,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     OrderByPipe
   ],
   providers: [
-    ModalWindowService
+    ModalWindowService,
+    SpinnerService
   ]
 })
 export class SharedModule {

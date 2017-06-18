@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Course } from './models/course';
 import { ServerCourse } from './models/server-course';
+import { SpinnerService } from '../shared/shared';
 
 @Injectable()
 export class CourseService {
@@ -14,7 +15,7 @@ export class CourseService {
     sunt in culpa qui officia deserunt mollit anim id est laborum.`;
   private _fakeResponseFromTheServer: ServerCourse[];
 
-  constructor() {
+  constructor(private _spinnerService: SpinnerService) {
     this._initData();
   }
 
@@ -27,6 +28,8 @@ export class CourseService {
       .filter((course) => course.courseCreatingDate >= freshDate)
       .map((courseSource) => this._mapServerCourse(courseSource));
 
+    this._imitateWorkWithServer();
+
     return Observable.of(courses);
   }
 
@@ -34,11 +37,15 @@ export class CourseService {
     const source = this._fakeResponseFromTheServer.find((c) => c.courseId === id);
     const course = this._mapServerCourse(source);
 
+    this._imitateWorkWithServer();
+
     return Observable.of(course);
   }
 
   public create(course: Course): void {
     const serverCourse = this._mapClientCourse(course);
+
+    this._imitateWorkWithServer();
 
     this._fakeResponseFromTheServer.push(serverCourse);
   }
@@ -54,6 +61,13 @@ export class CourseService {
   public remove(id: string): void {
     const index = this._fakeResponseFromTheServer.findIndex((c) => c.courseId === id);
     this._fakeResponseFromTheServer.splice(index, 1);
+  }
+
+  private _imitateWorkWithServer(): void {
+    this._spinnerService.show();
+    setTimeout(() => {
+      this._spinnerService.hide();
+    }, 500);
   }
 
   private _mapServerCourse(source: ServerCourse): Course {
