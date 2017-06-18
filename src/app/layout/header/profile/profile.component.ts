@@ -8,8 +8,17 @@ import { AuthService, UserInfo } from '../../../auth/auth';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  public userInfo: UserInfo;
+
   constructor(public authService: AuthService, private _router: Router) {
+  }
+
+  public ngOnInit(): void {
+    this.userInfo = {} as UserInfo;
+    this.authService.userInfo.subscribe((info) => {
+      this.userInfo = info;
+    });
   }
 
   public logOut(): void {

@@ -1,7 +1,7 @@
 <ul *ngIf="authService.isAuthenticated()" class="profile nav navbar-nav navbar-right">
   <li>
     <a class="name">
-      <span>Hello {{authService.userInfo.firstName}} {{authService.userInfo.lastName}}</span>
+      <span>Hello {{userInfo.firstName}} {{userInfo.lastName}}</span>
     </a>
   </li>
   <li>
