@@ -1,0 +1,32 @@
+$border-color: #e7e7e7;
+
+.preview-container {
+  border: solid 1px $border-color;
+  overflow: auto;
+  padding: 10px 5px 10px 15px;
+
+  .preview-heading {
+    padding-bottom: 5px;
+    border-bottom: solid 1px $border-color;
+  }
+
+  .course-actions {
+    padding-right: inherit;
+
+    .action-button {
+      margin: 5px 0 5px 0;
+    }
+  }
+}
+
+.top-rated {
+  background-color: #fcf8e3;
+}
+
+.fresh-course {
+  border: solid 1px #5cb85c;
+}
+
+.future-course {
+  border: solid 1px #5bc0de;
+}

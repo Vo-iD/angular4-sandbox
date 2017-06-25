@@ -1,3 +1,16 @@
-<div style="float: right">
-  Profile
-</div>
+<ul *ngIf="authService.isAuthenticated()" class="profile nav navbar-nav navbar-right">
+  <li>
+    <a class="name">
+      <span>Hello {{authService.userInfo.firstName}} {{authService.userInfo.lastName}}</span>
+    </a>
+  </li>
+  <li>
+    <a class="actionIcon" (click)="logOut()">Log off</a>
+  </li>
+</ul>
+
+<ul *ngIf="!authService.isAuthenticated()" class="profile nav navbar-nav navbar-right">
+  <li>
+    <a class="actionIcon" (click)="goToLogin()">Log in</a>
+  </li>
+</ul>

@@ -1,7 +1,7 @@
 {
-  "name": "angular-starter",
+  "name": "courses",
   "version": "6.0.0",
-  "description": "An Angular Webpack Starter kit featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "description": "Angular 2 CDP",
   "keywords": [
     "angular",
     "angular2",
@@ -9,9 +9,7 @@
     "webpack",
     "typescript"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/AngularClass/angular-starter",
-  "license": "MIT",
+  "author": "Bohdan Simianyk <Bohdan_Simianyk@epam.com>",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
     "build:aot": "npm run build:aot:prod",
@@ -83,9 +81,11 @@
     "@angular/router": "~4.1.2",
     "@angularclass/hmr": "~1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
+    "bootstrap-sass": "^3.3.7",
     "core-js": "^2.4.1",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
+    "ngx-bootstrap": "^1.7.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "~5.0.2",
     "zone.js": "0.8.5"
