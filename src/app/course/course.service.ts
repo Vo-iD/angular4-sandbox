@@ -66,7 +66,7 @@ export class CourseService {
   }
 
   public create(course: Course): void {
-    this._courses.push(course);
+    this._courses = [...this._courses, course];
   }
 
   public update(id: string, course: Course): void {
@@ -77,7 +77,6 @@ export class CourseService {
   }
 
   public remove(id: string): void {
-    const index = this._courses.findIndex((c) => c.id === id);
-    this._courses.splice(index, 1);
+    this._courses = [...this._courses.filter((c) => c.id !== id)];
   }
 }

@@ -1,11 +1,11 @@
 <div class="container">
   <course-toolbox [(courses)]="courses"></course-toolbox>
-  <div *ngIf="courses && courses.length > 0">
+  <div *ngIf="courses?.length">
     <div *ngFor="let course of courses | orderBy: 'creatingDate'">
       <course-preview class="row" [course]="course" (deleteCourse)="deleteCourse($event)"></course-preview>
     </div>
   </div>
-  <div *ngIf="!courses || courses.length === 0" class="well well-lg no-data">
+  <div *ngIf="!courses?.length" class="well well-lg no-data">
     <h4>No data. Feel free to add new course.</h4>
   </div>
 </div>

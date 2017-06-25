@@ -20,7 +20,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.courses = this._courseService.getList();
+    this._init();
   }
 
   public deleteCourse($event) {
@@ -28,7 +28,12 @@ export class CoursesListComponent implements OnInit {
       .then((result) => {
         if (result) {
           this._courseService.remove($event);
+          this._init();
         }
       });
+  }
+
+  private _init() {
+    this.courses = this._courseService.getList();
   }
 }
