@@ -21,14 +21,7 @@ export class CoursesListComponent extends SafeObservableWrapper implements OnIni
   }
 
   public ngOnInit(): void {
-<<<<<<< HEAD
-    const subscription = this._courseService
-      .getList()
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe((courses) => this.courses = courses);
-=======
     this._init();
->>>>>>> 028aed69672d310bc960a7cdb7a8bf8c935600ce
   }
 
   public deleteCourse($event) {
@@ -42,6 +35,9 @@ export class CoursesListComponent extends SafeObservableWrapper implements OnIni
   }
 
   private _init() {
-    this.courses = this._courseService.getList();
+    const subscription = this._courseService
+      .getList()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((courses) => this.courses = courses);
   }
 }

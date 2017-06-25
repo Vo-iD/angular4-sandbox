@@ -1,4 +1,10 @@
 <form id="signin" class="center-block login-form">
+  <div class="alert alert-danger" role="alert" *ngIf="!creadentialsAreCorrect">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Invalid login or/and password
+  </div>
+
   <div class="input-group login-input">
     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
     <input required [(ngModel)]="userLogin" id="login" type="text" class="form-control required" name="login" value="" placeholder="Login">

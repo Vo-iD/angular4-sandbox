@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, XHRBackend, RequestOptions } from '@angular/http';
+import {
+  Http,
+  Request,
+  Response,
+  RequestOptionsArgs,
+  XHRBackend,
+  RequestOptions
+} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SpinnerService } from '../../shared/shared';
 
@@ -24,7 +31,7 @@ export class HttpService extends Http {
 
     this._spinnerService.show();
 
-    const requestObservable = super.request(url, options).share();
+    const requestObservable = super.request(url, options);
 
     requestObservable.subscribe(
       () => { this._spinnerService.hide(); },
