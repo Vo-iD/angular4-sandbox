@@ -13,6 +13,8 @@ import { Course } from '../models/course';
 })
 export class CoursesListComponent extends SafeObservableWrapper implements OnInit {
   public courses: Course[];
+  public countPerPage = 5;
+  public page = 1;
 
   constructor(
     private _courseService: CourseService,
@@ -24,7 +26,7 @@ export class CoursesListComponent extends SafeObservableWrapper implements OnIni
     this._init();
   }
 
-  public deleteCourse($event) {
+  public deleteCourse($event): void {
     this._modalWindowService.openConfirmation('Do you really want to delete this course?')
       .then((result) => {
         if (result) {
@@ -34,9 +36,18 @@ export class CoursesListComponent extends SafeObservableWrapper implements OnIni
       });
   }
 
-  private _init() {
-    const subscription = this._courseService
-      .getList()
+  public loadMoreCourses(): void {
+    this.page++;
+
+    this._courseService
+      .getList(this.countPerPage, this.page)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((courses) => courses.forEach((c) => this.courses.push(c)));
+  }
+
+  private _init(): void {
+    this._courseService
+      .getList(this.countPerPage, this.page)
       .takeUntil(this.ngUnsubscribe)
       .subscribe((courses) => this.courses = courses);
   }

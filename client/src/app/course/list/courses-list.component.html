@@ -4,6 +4,10 @@
     <div *ngFor="let course of courses | orderBy: 'creatingDate'">
       <course-preview class="row" [course]="course" (deleteCourse)="deleteCourse($event)"></course-preview>
     </div>
+
+    <div class="col-md-12 text-center">
+      <button class="btn btn-default" type="button" (click)="loadMoreCourses()">Load more courses</button>
+    </div>
   </div>
   <div *ngIf="!courses?.length" class="well well-lg no-data">
     <h4>No data. Feel free to add new course.</h4>

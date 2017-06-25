@@ -5,6 +5,7 @@ const url = require('url');
 module.exports = (server) => {
 
 	router.get('/courses', (req, res, next) => {
+		debugger;
 		let url_parts = url.parse(req.originalUrl, true),
 			query = url_parts.query,
 			from = query.start,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../auth/auth';
+import { UserInfo } from '../../../core/core';
 
 @Component({
   selector: 'logo',
@@ -7,10 +7,10 @@ import { AuthService } from '../../../auth/auth';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
-    constructor(private _authService: AuthService) {
+    constructor(private _userInfo: UserInfo) {
   }
 
   public get authenticated(): boolean {
-    return this._authService.isAuthenticated();
+    return this._userInfo.isAuthenticated;
   }
 }

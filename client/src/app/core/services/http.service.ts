@@ -9,6 +9,7 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SpinnerService } from '../../shared/shared';
+import { UserInfo } from '../core';
 
 @Injectable()
 export class HttpService extends Http {

@@ -49,8 +49,4 @@ export class AuthService extends SafeObservableWrapper {
 
     this._router.navigate(['login']);
   }
-
-  public isAuthenticated(): boolean {
-    return !!this._userInfo.authToken;
-  }
 }

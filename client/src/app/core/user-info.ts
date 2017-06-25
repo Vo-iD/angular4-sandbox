@@ -30,4 +30,8 @@ export class UserInfo {
     this.lastName = user.name.last;
     this.authToken = user.fakeToken;
   }
+
+  public get isAuthenticated(): boolean {
+    return !!(this.authToken && this.login);
+  }
 }
