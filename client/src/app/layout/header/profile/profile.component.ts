@@ -1,24 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService, UserInfo } from '../../../auth/auth';
+import { AuthService } from '../../../auth/auth';
+import { UserInfo } from '../../../core/core';
 
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-  public userInfo: UserInfo;
-
-  constructor(public authService: AuthService, private _router: Router) {
-  }
-
-  public ngOnInit(): void {
-    this.userInfo = {} as UserInfo;
-    this.authService.userInfo.subscribe((info) => {
-      this.userInfo = info;
-    });
+export class ProfileComponent {
+  constructor(
+    public authService: AuthService,
+    public userInfo: UserInfo,
+    private _router: Router) {
   }
 
   public logOut(): void {

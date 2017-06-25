@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpService } from './core';
+import { HttpService, UserInfo } from './core';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
   ],
   providers: [
+    UserInfo,
     HttpService
   ]
 })

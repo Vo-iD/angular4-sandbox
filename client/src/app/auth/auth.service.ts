@@ -5,22 +5,16 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
 import { SafeObservableWrapper } from '../shared/shared';
+import { User } from '../core/models/user';
 
-import { UserInfo } from './auth';
-import { User } from './models/user';
 import { Observable } from 'rxjs/Observable';
+import { UserInfo } from '../core/core';
 
 @Injectable()
 export class AuthService extends SafeObservableWrapper {
-  public userInfo: Subject<UserInfo> = new Subject();
-  private _isAuthenticated = false;
 
-  constructor(private _router: Router, private _http: Http) {
+  constructor(private _router: Router, private _userInfo: UserInfo, private _http: Http) {
     super();
-
-    this.userInfo.subscribe((userInfo) => {
-      this._isAuthenticated = !!userInfo;
-    });
   }
 
   public login(login: string, password: string): Subject<boolean> {
@@ -36,7 +30,7 @@ export class AuthService extends SafeObservableWrapper {
       .subscribe((response) => {
         const users = response.json() as User[];
         if (users && users.length === 1) {
-          this._initUserInfo(users[0]);
+          this._userInfo.update(users[0]);
           loginOperation.next(true);
         } else {
           loginOperation.next(false);
@@ -49,7 +43,7 @@ export class AuthService extends SafeObservableWrapper {
   public logOut(): void {
     console.log('Logging out...');
 
-    this.userInfo.next(null);
+    this._userInfo.clean();
 
     console.log('Redirecting to login page');
 
@@ -57,17 +51,6 @@ export class AuthService extends SafeObservableWrapper {
   }
 
   public isAuthenticated(): boolean {
-    return this._isAuthenticated;
-  }
-
-  private _initUserInfo(user: User): void {
-    const userInfo = new UserInfo();
-
-    userInfo.login = user.login;
-    userInfo.firstName = user.name.first;
-    userInfo.lastName = user.name.last;
-    userInfo.authToken = user.fakeToken;
-
-    this.userInfo.next(userInfo);
+    return !!this._userInfo.authToken;
   }
 }
