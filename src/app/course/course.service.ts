@@ -47,7 +47,7 @@ export class CourseService {
 
     this._imitateWorkWithServer();
 
-    this._fakeResponseFromTheServer.push(serverCourse);
+    this._fakeResponseFromTheServer = [...this._fakeResponseFromTheServer, serverCourse];
   }
 
   public update(id: string, course: Course): void {
@@ -59,8 +59,8 @@ export class CourseService {
   }
 
   public remove(id: string): void {
-    const index = this._fakeResponseFromTheServer.findIndex((c) => c.courseId === id);
-    this._fakeResponseFromTheServer.splice(index, 1);
+    this._fakeResponseFromTheServer = [...this._fakeResponseFromTheServer
+      .filter((c) => c.courseId !== id)];
   }
 
   private _imitateWorkWithServer(): void {
