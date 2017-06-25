@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import {
   NgModule,
   ApplicationRef
@@ -36,6 +36,8 @@ import { CourseModule } from './course/course.module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { CoreModule } from './core/core.module';
+import { HttpService } from './core/core';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -58,6 +60,7 @@ type StoreType = {
     AppRouting,
     BlockUIModule,
     SharedModule,
+    CoreModule,
     AuthModule,
     LayoutModule,
     CourseModule
@@ -67,7 +70,8 @@ type StoreType = {
   ],
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    { provide: Http, useClass: HttpService },
   ]
 })
 export class AppModule {
