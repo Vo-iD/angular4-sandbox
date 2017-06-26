@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { CourseService } from '../../course.service';
 import { CourseToolboxComponent } from './course-toolbox.component';
 import { CourseSearchComponent } from './search/course-search.component';
-import { SearchCoursePipe } from './search/search.pipe';
 
 @NgModule({
   imports: [
@@ -21,6 +20,6 @@ import { SearchCoursePipe } from './search/search.pipe';
     CourseToolboxComponent,
     CourseSearchComponent
   ],
-  providers: [CourseService, SearchCoursePipe]
+  providers: [CourseService]
 })
 export class CourseToolboxModule { }
