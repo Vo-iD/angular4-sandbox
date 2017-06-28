@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Course } from '../models/course';
 import { CourseService } from '../course.service';
 import { CourseBaseForm } from './course-base-form';
+import { Subject } from "rxjs/Subject";
 
 @Component({
   selector: 'add-course',
@@ -18,7 +19,10 @@ export class AddCourseComponent extends CourseBaseForm {
   }
 
   public save(): void {
-    this._courseService.create(this.course);
-    this.router.navigate(['courses']);
+    this._courseService.create(this.course)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((result) => {
+        this.router.navigate(['courses']);
+      });
   }
 }
