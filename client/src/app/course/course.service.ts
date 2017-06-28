@@ -48,8 +48,8 @@ export class CourseService extends SafeObservableWrapper {
     this._http.get('courses', options)
       .takeUntil(this.ngUnsubscribe)
       .subscribe((response) => {
-        const courseFromServer = response.json();
-        courses.next(this._mapServerCourse(courseFromServer));
+        const coursesFromServer = response.json();
+        courses.next(this._mapServerCourse(coursesFromServer[0]));
       });
 
     return courses;
@@ -110,7 +110,8 @@ export class CourseService extends SafeObservableWrapper {
       date: source.date,
       title: source.name,
       description: source.description,
-      topRated: source.isTopRated
+      topRated: source.isTopRated,
+      authors: source.authors
     } as Course;
 
     return course;

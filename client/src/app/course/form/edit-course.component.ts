@@ -23,7 +23,9 @@ export class EditCourseComponent extends CourseBaseForm implements OnInit {
 
   public ngOnInit(): void {
     this._courseService.get(this.courseId)
-      .subscribe((course) => this.course = course);
+      .subscribe((course) => {
+        this.course = course;
+      });
   }
 
   public save(): void {

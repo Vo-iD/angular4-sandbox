@@ -11,9 +11,6 @@ import { CourseBaseForm } from './course-base-form';
   styleUrls: ['./course-form.component.scss']
 })
 export class AddCourseComponent extends CourseBaseForm {
-    // tslint:disable-next-line:member-access
-    @ViewChild('courseForm') form: any;
-
   constructor(private _courseService: CourseService, router: Router) {
     super(router);
     this.course = new Course();
@@ -21,7 +18,6 @@ export class AddCourseComponent extends CourseBaseForm {
   }
 
   public save(): void {
-    debugger;
     this._courseService.create(this.course);
     this.router.navigate(['courses']);
   }

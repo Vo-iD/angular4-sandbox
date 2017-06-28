@@ -6,6 +6,7 @@ export abstract class CourseBaseForm {
   public submitButtonTitle: string;
 
   constructor(protected router: Router) {
+    this.course = {} as Course;
   }
 
   public abstract save(): void;
