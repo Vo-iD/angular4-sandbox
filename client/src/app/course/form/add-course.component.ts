@@ -16,7 +16,7 @@ export class AddCourseComponent extends CourseBaseForm {
 
   constructor(private _courseService: CourseService, router: Router) {
     super(router);
-    this.course = {} as Course;
+    this.course = new Course();
     this.submitButtonTitle = 'Create';
   }
 

@@ -14,9 +14,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class DurationComponent implements ControlValueAccessor {
   public readOnly: boolean;
+  private _innerValue: number;
   private _changed = new Array<(value: any) => void>();
   private _onTouchedCallback: () => void = () => {};
-  private _innerValue: number;
 
   public set value(v: number) {
     this._innerValue = v;
@@ -43,7 +43,7 @@ export class DurationComponent implements ControlValueAccessor {
     this._innerValue = value;
   }
 
-  public onBlur() {
+    public onBlur() {
     this._onTouchedCallback();
   }
 }

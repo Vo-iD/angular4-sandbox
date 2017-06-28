@@ -1,0 +1,19 @@
+.authors {
+  padding: 10px;
+  height: 100%;
+  
+  .author {
+    padding: 5px 0px;
+    border-bottom: 1px solid #f2f2f2;
+
+    .selected-author {
+      font-weight: bold;
+    }
+  }
+}
+
+.has-error {
+  .authors {
+    border-color: #a94442;
+  }
+}

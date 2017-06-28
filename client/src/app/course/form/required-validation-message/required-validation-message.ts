@@ -5,7 +5,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   selector: 'required-validation-message',
   template: `
   <div class="alert alert-danger">
-    {{fieldName}} is required.
+    Field '{{fieldName}}' is required.
   </div>
   `
 })
