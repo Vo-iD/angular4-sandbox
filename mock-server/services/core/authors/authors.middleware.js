@@ -5,8 +5,11 @@ const url = require('url');
 module.exports = (server) => {
 
 	router.get('/authors', (req, res, next) => {
-		let authors = server.db.getState().authors;
-		
+		const courses = server.db.getState().courses;
+		const authorsArrays = courses.map(c => c.authors);
+		const authorsWithPossibleDublicates = [].concat.apply([], authorsArrays);
+		const authors = [...new Set(authorsWithPossibleDublicates)]
+
 		res.json(authors);
 	});
 	

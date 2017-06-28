@@ -2,6 +2,7 @@ import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AuthorsService } from './authors.service';
 import { SafeObservableWrapper } from '../../../shared/shared';
+import { Author } from '../../models/author';
 
 @Component({
   selector: 'authors',
@@ -18,7 +19,7 @@ import { SafeObservableWrapper } from '../../../shared/shared';
 export class AuthorsComponent extends SafeObservableWrapper implements ControlValueAccessor {
   public readOnly: boolean;
   public authors: SelectAuthor[];
-  private _selectedAuthors: string[];
+  private _selectedAuthors: Author[];
   private _changed = new Array<(value: any) => void>();
 
   constructor(private _authorsService: AuthorsService) {
@@ -38,7 +39,7 @@ export class AuthorsComponent extends SafeObservableWrapper implements ControlVa
     this.readOnly = isDisabled;
   }
 
-  public writeValue(value: string[]): void {
+  public writeValue(value: Author[]): void {
     this._setSelectedAuthors(value);
   }
 
@@ -46,7 +47,7 @@ export class AuthorsComponent extends SafeObservableWrapper implements ControlVa
     author.selected = !author.selected;
     this._selectedAuthors = this.authors
       .filter((a) => a.selected)
-      .map((a) => a.name);
+      .map((a) => a.author);
 
     this._onTouchedCallback();
     this._changed.forEach((f) => f(this._selectedAuthors));
@@ -54,20 +55,20 @@ export class AuthorsComponent extends SafeObservableWrapper implements ControlVa
 
   private _onTouchedCallback: () => void = () => {};
 
-  public set value(value: string[]) {
+  public set value(value: Author[]) {
     this._setSelectedAuthors(value);
 
     this._changed.forEach((f) => f(value));
   }
 
-  public get value(): string[] {
+  public get value(): Author[] {
     return this._selectedAuthors;
   };
 
-  private _setSelectedAuthors(authors: string[]) {
+  private _setSelectedAuthors(authors: Author[]) {
     if (authors) {
       authors.forEach((author) => {
-        const foundAuthor = this.authors.find((a) => a.name === author);
+        const foundAuthor = this.authors.find((a) => a.author.id === author.id);
         foundAuthor.selected = true;
       });
     }
@@ -76,10 +77,10 @@ export class AuthorsComponent extends SafeObservableWrapper implements ControlVa
   private _initAuthors() {
     this._authorsService.getList()
       .takeUntil(this.ngUnsubscribe)
-      .subscribe((names) => {;
-        this.authors = names.map((name) => {
+      .subscribe((authors) => {;
+        this.authors = authors.map((a) => {
           const author = {
-            name,
+            author: a,
             selected: false
           } as SelectAuthor;
 
@@ -90,6 +91,6 @@ export class AuthorsComponent extends SafeObservableWrapper implements ControlVa
 }
 
 interface SelectAuthor {
-  name: string;
+  author: Author;
   selected: boolean;
 }

@@ -27,7 +27,6 @@ export class EditCourseComponent extends CourseBaseForm implements OnInit {
   }
 
   public save(): void {
-    debugger
     this._courseService.update(this.courseId, this.course);
     this.router.navigate(['courses']);
   }
