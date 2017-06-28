@@ -1,5 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { AuthorsService } from './authors.service';
+import { SafeObservableWrapper } from '../../../shared/shared';
 
 @Component({
   selector: 'authors',
@@ -13,13 +15,14 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
     }
   ]
 })
-export class AuthorsComponent implements ControlValueAccessor {
+export class AuthorsComponent extends SafeObservableWrapper implements ControlValueAccessor {
   public readOnly: boolean;
   public authors: SelectAuthor[];
   private _selectedAuthors: string[];
   private _changed = new Array<(value: any) => void>();
 
-  constructor() {
+  constructor(private _authorsService: AuthorsService) {
+    super();
     this._initAuthors();
   }
 
@@ -71,36 +74,18 @@ export class AuthorsComponent implements ControlValueAccessor {
   }
 
   private _initAuthors() {
-    this.authors = [
-      {
-        name: 'Author 1',
-        selected: false
-      }, {
-        name: 'Author 2',
-        selected: false
-      }, {
-        name: 'Author 3',
-        selected: false
-      }, {
-        name: 'Author 4',
-        selected: false
-      }, {
-        name: 'Author 5',
-        selected: false
-      }, {
-        name: 'Author 6',
-        selected: false
-      }, {
-        name: 'Author 7',
-        selected: false
-      }, {
-        name: 'Author 8',
-        selected: false
-      }, {
-        name: 'Author 9',
-        selected: false
-      }
-    ];
+    this._authorsService.getList()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((names) => {;
+        this.authors = names.map((name) => {
+          const author = {
+            name,
+            selected: false
+          } as SelectAuthor;
+
+          return author;
+        });
+      });
   }
 }
 

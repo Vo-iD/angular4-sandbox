@@ -9,7 +9,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CourseService extends SafeObservableWrapper {
-  constructor(private _spinnerService: SpinnerService, private _http: Http) {
+  constructor(private _http: Http) {
     super();
   }
 
@@ -101,13 +101,6 @@ export class CourseService extends SafeObservableWrapper {
 
     return removeResult;
    }
-
-  private _imitateWorkWithServer(): void {
-    this._spinnerService.show();
-    setTimeout(() => {
-      this._spinnerService.hide();
-    }, 500);
-  }
 
   private _mapServerCourse(source: ServerCourse): Course {
     const course = {

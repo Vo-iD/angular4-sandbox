@@ -19,6 +19,7 @@ import { DurationComponent } from './form/duration/duration.component';
 import { DateInputComponent } from './form/date/date-input.component';
 import { AuthorsComponent } from './form/authors/authors.component';
 import { RequiredValidationMessageComponent } from './form/required-validation-message/required-validation-message';
+import { AuthorsService } from './form/authors/authors.service';
 
 @NgModule({
   imports: [
@@ -47,6 +48,6 @@ import { RequiredValidationMessageComponent } from './form/required-validation-m
     DurationComponent,
     RequiredValidationMessageComponent
   ],
-  providers: [CourseService]
+  providers: [CourseService, AuthorsService]
 })
 export class CourseModule { }
