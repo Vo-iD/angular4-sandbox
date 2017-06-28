@@ -1,1 +1,2 @@
-<input type="date" name="date" [ngModel]="date | date:'yyyy-MM-dd'" (ngModelChange)="onChange($event)">
+<div>* Value should be in format {{pattern}}</div>
+<input class="form-control" type="date" name="date" (blur)="onBlur()" [(ngModel)]="value">

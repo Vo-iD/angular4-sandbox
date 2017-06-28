@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Course } from '../models/course';
 import { CourseService } from '../course.service';
 import { CourseBaseForm } from './course-base-form';
@@ -10,6 +11,9 @@ import { CourseBaseForm } from './course-base-form';
   styleUrls: ['./course-form.component.scss']
 })
 export class AddCourseComponent extends CourseBaseForm {
+    // tslint:disable-next-line:member-access
+    @ViewChild('courseForm') form: any;
+
   constructor(private _courseService: CourseService, router: Router) {
     super(router);
     this.course = {} as Course;
@@ -17,6 +21,7 @@ export class AddCourseComponent extends CourseBaseForm {
   }
 
   public save(): void {
+    debugger;
     this._courseService.create(this.course);
     this.router.navigate(['courses']);
   }

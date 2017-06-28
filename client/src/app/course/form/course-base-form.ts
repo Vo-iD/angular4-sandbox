@@ -13,12 +13,4 @@ export abstract class CourseBaseForm {
   public cancel(): void {
     this.router.navigate(['courses']);
   }
-
-  public updateDuration($event: number): void {
-    this.course.duration = $event;
-  }
-
-  public updateDate($event: Date): void {
-    this.course.date = $event;
-  }
 }

@@ -18,6 +18,7 @@ import { CourseBorderDirective } from './directives/course-border.directive';
 import { DurationComponent } from './form/duration/duration.component';
 import { DateInputComponent } from './form/date/date-input.component';
 import { AuthorsComponent } from './form/authors/authors.component';
+import { RequiredValidationMessageComponent } from './form/required-validation-message/required-validation-message';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { AuthorsComponent } from './form/authors/authors.component';
     CoursePreviewComponent,
     DateInputComponent,
     AuthorsComponent,
-    DurationComponent
+    DurationComponent,
+    RequiredValidationMessageComponent
   ],
   providers: [CourseService]
 })

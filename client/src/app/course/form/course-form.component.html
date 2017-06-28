@@ -1,27 +1,31 @@
 <div class="container course-form">
-  <form class="col-md-8 col-md-offset-2">
+  <form class="col-md-8 col-md-offset-2" #courseForm="ngForm">
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Title</label>
-      <div class="col-sm-10">
-        <input type="text" name="title" class="form-control" id="title" [(ngModel)]="course.title" placeholder="Course title">
+      <div class="col-sm-10" [ngClass]="{'has-error': title.errors && title.touched}">
+        <input required #title="ngModel" type="text" name="title" class="form-control" id="title" [maxLength]="50" [(ngModel)]="course.title" placeholder="Course title">
+         <required-validation-message fieldName="Title" *ngIf="title.errors && title.errors.required && title.touched"></required-validation-message>
       </div>
     </div>
     <div class="form-group row">
       <label for="description" class="col-sm-2 col-form-label">Description</label>
-      <div class="col-sm-10">
-        <textarea class="form-control" name="description" rows="7" id="description" [(ngModel)]="course.description" placeholder="Course description"></textarea>
+      <div class="col-sm-10" [ngClass]="{'has-error': description.errors && description.touched}">
+        <textarea required class="form-control" #description="ngModel" name="description" rows="7" [maxLength]="500" id="description" [(ngModel)]="course.description" placeholder="Course description"></textarea>
+        <required-validation-message fieldName="Description" *ngIf="description.errors && description.errors.required && description.touched"></required-validation-message>
       </div>
     </div>
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Date</label>
-      <div class="col-sm-10">
-        <date-input [date]="course.date" (dateChanged)="updateDate($event)"></date-input>
+      <div class="col-sm-10" [ngClass]="{'has-error': date.errors && date.touched}">
+        <date-input required #date="ngModel" name="courseDate" [(ngModel)]="course.date"></date-input>
+        <required-validation-message fieldName="Date" *ngIf="date.errors && date.errors.required && date.touched"></required-validation-message>
       </div>
     </div>
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Duration</label>
-      <div class="col-sm-10">
-        <duration [duration]="course.duration" (durationChanged)="updateDuration($event)"></duration>
+      <div class="col-sm-10" [ngClass]="{'has-error': duration.errors && duration.touched}">
+        <duration required #duration="ngModel" name="duration" [(ngModel)]="course.duration"></duration>
+        <required-validation-message fieldName="Duration" *ngIf="duration.errors && duration.errors.required && duration.touched"></required-validation-message>
       </div>
     </div>
     <div class="form-group row">
@@ -33,7 +37,7 @@
 
     <div class="row col-sm-offset-4">
       <div class="col-sm-2">
-        <button type="button" class="btn btn-primary" (click)="save()">{{submitButtonTitle}}</button>
+        <button type="button" class="btn btn-primary" (click)="save()" [disabled]="courseForm.invalid">{{submitButtonTitle}}</button>
       </div>
 
       <div class="col-sm-2">
