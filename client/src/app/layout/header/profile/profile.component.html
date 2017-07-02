@@ -1,0 +1,16 @@
+<ul *ngIf="userInfo.isAuthenticated" class="profile nav navbar-nav navbar-right">
+  <li>
+    <a class="name">
+      <span>Hello {{userInfo.firstName}} {{userInfo.lastName}}</span>
+    </a>
+  </li>
+  <li>
+    <a class="actionIcon" (click)="logOut()">Log off</a>
+  </li>
+</ul> 
+
+<ul *ngIf="!userInfo.isAuthenticated" class="profile nav navbar-nav navbar-right">
+  <li>
+    <a class="actionIcon" (click)="goToLogin()">Log in</a>
+  </li>
+</ul>
