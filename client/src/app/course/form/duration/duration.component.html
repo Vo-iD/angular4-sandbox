@@ -1,2 +1,2 @@
-<input type="number" placeholder="Duration in minutes" [(ngModel)]="duration" (ngModelChange)="onChange($event)">
-<span *ngIf="duration">{{duration | minutesToTime}}</span>
+<input class="form-control" type="number" placeholder="Duration in minutes" (blur)="onBlur()" [(ngModel)]="value">
+<span *ngIf="value">{{value | minutesToTime}}</span>

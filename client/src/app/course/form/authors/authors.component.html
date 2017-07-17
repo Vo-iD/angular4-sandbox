@@ -1,2 +1,6 @@
-Authors select
-Stub for now
+<div (blur)="onBlur()" class="form-control authors">
+  <div *ngFor="let author of authors" class="author">
+    <input type="checkbox" (ngModelChange)="selectAuthor(author)" name="{{author.name}}" [ngModel]="author.selected"/>
+    <span class="pull-right" [ngClass]="{'selected-author': author.selected}">{{author.author.firstName}} {{author.author.lastName}}</span>
+  </div>
+</div>

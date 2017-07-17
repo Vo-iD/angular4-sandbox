@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Course } from '../models/course';
 import { CourseService } from '../course.service';
 import { CourseBaseForm } from './course-base-form';
+import { Subject } from "rxjs/Subject";
 
 @Component({
   selector: 'add-course',
@@ -12,12 +14,15 @@ import { CourseBaseForm } from './course-base-form';
 export class AddCourseComponent extends CourseBaseForm {
   constructor(private _courseService: CourseService, router: Router) {
     super(router);
-    this.course = {} as Course;
+    this.course = new Course();
     this.submitButtonTitle = 'Create';
   }
 
   public save(): void {
-    this._courseService.create(this.course);
-    this.router.navigate(['courses']);
+    this._courseService.create(this.course)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((result) => {
+        this.router.navigate(['courses']);
+      });
   }
 }

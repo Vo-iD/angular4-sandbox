@@ -1,4 +1,4 @@
-<form id="signin" class="center-block login-form">
+<form id="signin" class="center-block login-form" #loginForm="ngForm">
   <div class="alert alert-danger" role="alert" *ngIf="!creadentialsAreCorrect">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <span class="sr-only">Error:</span>
@@ -15,5 +15,5 @@
     <input required [(ngModel)]="userPass" id="password" type="password" class="form-control required" name="password" value="" placeholder="Password">
   </div>
 
-  <button type="submit" class="btn btn-primary center-block" (click)="login()">Login</button>
+  <button type="submit" class="btn btn-primary center-block" (click)="login()" [disabled]="loginForm.invalid">Login</button>
 </form>

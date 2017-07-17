@@ -1,3 +1,5 @@
+import { Author } from './author';
+
 export class Course {
   public id: string;
   public type: string;
@@ -6,4 +8,5 @@ export class Course {
   public title: string;
   public description: string;
   public topRated: boolean;
+  public authors: Author[];
 }

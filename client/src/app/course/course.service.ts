@@ -9,7 +9,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CourseService extends SafeObservableWrapper {
-  constructor(private _spinnerService: SpinnerService, private _http: Http) {
+  constructor(private _http: Http) {
     super();
   }
 
@@ -48,8 +48,8 @@ export class CourseService extends SafeObservableWrapper {
     this._http.get('courses', options)
       .takeUntil(this.ngUnsubscribe)
       .subscribe((response) => {
-        const courseFromServer = response.json();
-        courses.next(this._mapServerCourse(courseFromServer));
+        const coursesFromServer = response.json();
+        courses.next(this._mapServerCourse(coursesFromServer[0]));
       });
 
     return courses;
@@ -74,12 +74,47 @@ export class CourseService extends SafeObservableWrapper {
     return courses;
   }
 
-  public create(course: Course): void {
-    throw Error('Not implemented');
+  public create(course: Course): Observable<string> {
+    const options = new RequestOptions();
+    const serverModel = this._mapToServerCourse(course);
+    options.body = serverModel;
+
+    const createResult: Subject<string> = new Subject();
+
+    this._http.post(`courses`, options)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((response) => {
+        const courseId = response.json();
+        console.log(`Course ${courseId} updated successfully.`);
+
+        createResult.next(courseId);
+      });
+
+    return createResult;
   }
 
-  public update(id: string, course: Course): void {
-    throw Error('Not implemented');
+  public update(id: string, course: Course): Observable<boolean> {
+    const options = new RequestOptions();
+    const serverModel = this._mapToServerCourse(course);
+    options.body = serverModel;
+
+    const updateResult: Subject<boolean> = new Subject();
+
+    this._http.put(`courses/${id}`, options)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((response) => {
+        const result = response.json();
+        if (result) {
+          console.log(`Course ${id} updated successfully.`);
+        } else {
+          console.error('Something wrong with deleting...');
+          console.error(response);
+        }
+
+        updateResult.next(result);
+      });
+
+    return updateResult;
   }
 
    public remove(id: string): Observable<boolean> {
@@ -102,13 +137,6 @@ export class CourseService extends SafeObservableWrapper {
     return removeResult;
    }
 
-  private _imitateWorkWithServer(): void {
-    this._spinnerService.show();
-    setTimeout(() => {
-      this._spinnerService.hide();
-    }, 500);
-  }
-
   private _mapServerCourse(source: ServerCourse): Course {
     const course = {
       id: source.id,
@@ -117,8 +145,22 @@ export class CourseService extends SafeObservableWrapper {
       date: source.date,
       title: source.name,
       description: source.description,
-      topRated: source.isTopRated
+      topRated: source.isTopRated,
+      authors: source.authors
     } as Course;
+
+    return course;
+  }
+
+  private _mapToServerCourse(source: Course): ServerCourse {
+    const course = {
+      id: source.id,
+      length: source.duration,
+      date: source.date,
+      name: source.title,
+      description: source.description,
+      authors: source.authors
+    } as ServerCourse;
 
     return course;
   }
